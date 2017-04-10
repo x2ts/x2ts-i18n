@@ -1,0 +1,27 @@
+{
+  "name": "x2ts/x2ts-i18n",
+  "description": "The internationalization module",
+  "type": "library",
+  "require": {
+    "x2ts/x2ts": "^2.0.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "6.1.*",
+    "phpunit/php-code-coverage": "^5.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "x2ts\\i18n\\": [
+        "src",
+        "tests"
+      ]
+    }
+  },
+  "license": "BSD",
+  "authors": [
+    {
+      "name": "TingSong-Syu",
+      "email": "rek@rek.me"
+    }
+  ]
+}
