@@ -9,6 +9,7 @@
 namespace x2ts\i18n;
 
 use x2ts\Component;
+use x2ts\ComponentFactory as X;
 
 class Internationalization extends Component {
     protected static $_conf = [
@@ -17,15 +18,17 @@ class Internationalization extends Component {
 
     protected static $messages = [];
 
-    public static function getInstance($language = null) {
+    public static function getInstance(array $args, array $conf, string $confHash = '') {
+        $language = $args[0] ?? $conf['default'] ?? static::$_conf['default'];
         if (!empty($language)) {
             $class = "\\lang\\$language";
             return new $class();
         }
-        if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+        $acceptLanguage = X::router()->action->header('Accept-Language', '');
+        if ($acceptLanguage) {
             preg_match_all(
                 '#([\w\-, ]+); ?q=([01]\.\d)#',
-                $_SERVER['HTTP_ACCEPT_LANGUAGE'],
+                $acceptLanguage,
                 $m,
                 PREG_SET_ORDER
             );
